@@ -43,7 +43,7 @@ public class Main {
             deliveryfee = 3.00;
             System.out.println("Delivery fee is: $" + df.format(deliveryfee));}
 
-        // Prompts for pizza size
+        // Prompts for sandwich size
         System.out.print("What size sandwich would you like (diameter in inches)? (4, 6, 8, or 12) " );
         inches = keyboard.nextInt();
         if (inches == 4 ){
