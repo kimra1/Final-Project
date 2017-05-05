@@ -117,7 +117,33 @@ public class Main {
         System.out.println("Order Cost: $" + df.format(total));
         System.out.println("Tax: $" + df.format(tax));
         System.out.println("Total Due: $" + df.format(lastTotal));
+        
     }
+    
+// Drink Order (switch statements)
+        System.out.println("Drink Menu");
+        System.out.println("----------------------------------------------");
+        System.out.println("Coke, Gatorade, Sprite, Water, Lemonade, Fanta");
+        System.out.println("What drink would you like?");
+        String drink = scanner.next();
+
+         System.out.println("Would you like a small (1), medium (2), or large(3)?");
+        int size = scanner.nextInt();
+
+            switch (size) {
+                case 1:
+                    System.out.println("Your total is: $2.75");
+                    break;
+                case 2:
+                    System.out.println("Your total is: $3.00");
+                    break;
+                case 3:
+                    System.out.println("Your total is: $3.25");
+                    break;
+                default:
+                    System.out.println("Invalid Option");
+            }
+    
 }
 
 
