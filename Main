@@ -1,0 +1,196 @@
+package com.company;
+
+import java.text.DecimalFormat;
+import java.util.Scanner;
+import java.util.Arrays;
+import java.time.LocalDate;
+
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        DecimalFormat df = new DecimalFormat("#.##");
+        Scanner keyboard = new Scanner(System.in);
+
+        LocalDate date = LocalDate.now();
+        System.out.printf("%s: %d%n", date, date.getDayOfMonth());
+
+
+        System.out.println("Do you want the deal of the day? (The Eric) type 1 for yes and 0 for no");
+        int userEric = scanner.nextInt();
+
+        if (userEric == 1) {
+            System.out.println("Your total for The Eric is $6.90");
+        }
+        else {
+
+
+        System.out.println("If you want to create your own sandwich, enter your information below:");
+
+//  Variables
+        String firstName; // first name of user
+        char TypeofBread;
+        String bread; // name of bread
+        int inches; // Size of sandwich
+        double cost = 0.0; // Sandwich cost
+        final double taxRate = 0.06; // amount tax owed maryland tax rate is 6%
+        double tax; // tax amount
+        double total; // total of sandwich + extra ingredients
+        double lastTotal; // total of everything
+        int numberOfingredients = 0;
+        int numberOfingredients2 = 0;
+        int numberOfingredients3 = 0;
+        int numberOfingredients4;
+        String ingredients = "Cheese";
+
+        TurkeySandwich myTurkey = new TurkeySandwich("The Eric");
+
+//Loop
+        int userInput = 1;
+        while (userInput != 0) {
+
+
+// Asks for name
+            System.out.println("Enter your name: ");
+            firstName = keyboard.nextLine();
+
+//Distance to Store
+            double distance = 0;
+            double deliveryfee = 0;
+            System.out.println("Please enter total distance in miles from Jimmy Johns shop (0 for in store pickup):");
+            distance = keyboard.nextDouble();
+            if (distance == 0) {
+                deliveryfee = 0;
+                System.out.println("There is no delivery fee.");
+            } else if (distance > 1) {
+                deliveryfee = ((distance * 0.3) + 1.5);
+                System.out.println("Delivery fee is: $" + df.format(deliveryfee));
+            } else if (distance > 0) {
+                deliveryfee = 3.00;
+                System.out.println("Delivery fee is: $" + df.format(deliveryfee));
+            }
+
+// Prompts for sandwich size
+            System.out.print("What size sandwich would you like (diameter in inches)? (4, 6, or 12) ");
+            inches = keyboard.nextInt();
+            if (inches == 4) {
+                cost = 4.99;
+            } else if (inches == 6) {
+                cost = 5.99;
+            } else if (inches == 12) {
+                cost = 11.99;
+            } else if (inches != 4 && inches != 6 && inches != 8 && inches != 12) {
+                System.out.println("The number you have entered is not allowed, your sandwich must be set to atleast 4 inches. ");
+                cost = 12;
+            }
+            keyboard.nextLine();
+
+// type of bread
+            System.out.print("What type of bread do you want? (C)heese-Bread, (G)arlic-bread, or (W)heat-bread (enter C, G, or W,): ");
+            TypeofBread = keyboard.nextLine().charAt(0);
+
+            if (TypeofBread == 'C' || TypeofBread == 'c') {
+                bread = "Hand-Tossed";
+            } else if (TypeofBread == 'G' || TypeofBread == 'g') {
+                bread = "Thin-bread";
+            } else if (TypeofBread == 'W' || TypeofBread == 'w') {
+                bread = "Deep-Dish";
+            } else if (TypeofBread != 'C' && TypeofBread != 'c' && TypeofBread != 'G' && TypeofBread != 'g' && TypeofBread != 'W' && TypeofBread != 'w') {
+                System.out.println("The bread type you have entered is not allowed, your bread type will be set to Cheese Bread. ");
+            }
+            bread = "Cheese Bread";
+
+// Prompts user for additonal ingredients
+            System.out.println("All sandwiches come with cheese.");
+            System.out.println("Additional ingredients are $0.75 each, choose from lettuce, Tomato, Mayo.");
+
+// Lettuce
+            System.out.println("Do you want Lettuce? (Y/N)");
+            numberOfingredients = keyboard.nextLine().charAt(0);
+            if (numberOfingredients == 'Y' || numberOfingredients == 'y') {
+                numberOfingredients = 1;
+                ingredients = ingredients + ", Lettuce";
+            } else {
+                numberOfingredients = 0;
+            }
+
+//tomato
+            System.out.println("Do you want Tomato? (Y/N)");
+            numberOfingredients2 = keyboard.nextLine().charAt(0);
+            if (numberOfingredients2 == 'Y' || numberOfingredients2 == 'y') {
+                numberOfingredients2 = 1;
+                ingredients = ingredients + ", Tomato";
+            } else {
+                numberOfingredients2 = 0;
+            }
+//Mayo
+            System.out.println("Do you want Bacon? (Y/N)");
+            numberOfingredients3 = keyboard.nextLine().charAt(0);
+            if (numberOfingredients3 == 'Y' || numberOfingredients3 == 'y') {
+                numberOfingredients3 = 1;
+                ingredients = ingredients + " and, Bacon";
+            } else {
+                numberOfingredients3 = 0;
+            }
+
+
+            numberOfingredients4 = (numberOfingredients) + (numberOfingredients2) + (numberOfingredients3);
+
+// Calculation
+            total = (cost) + (numberOfingredients4 * 0.75) + (deliveryfee);
+            tax = total * taxRate;
+            lastTotal = total * (1 + taxRate);
+
+//Confirmation
+            System.out.println(firstName + ", Your order is:");
+            System.out.println("A " + inches + " inch sandwich");
+            System.out.println(bread + ", with " + ingredients);
+            System.out.println("Order Cost: $" + df.format(total));
+            System.out.println("Tax: $" + df.format(tax));
+            System.out.println("Total Due: $" + df.format(lastTotal));
+
+// Drink Order
+
+            //Scanner scanner = new Scanner(System.in);
+
+            System.out.println("Drink Menu");
+            System.out.println("----------------------------------------------");
+            String[] drinkMenu = new String[] {"Coke, Gatorade, Sprite, Water, Lemonade, Fanta"};
+            System.out.println(Arrays.toString(drinkMenu));
+            System.out.println("What drink would you like?");
+            String drink = scanner.next();
+
+
+            System.out.println("Would you like a small (1), medium (2), or large(3)?");
+            int size = scanner.nextInt();
+
+            switch (size) {
+                case 1:
+                    System.out.println("Your total is: $2.75");
+                    break;
+                case 2:
+                    System.out.println("Your total is: $3.00");
+                    break;
+                case 3:
+                    System.out.println("Your total is: $3.25");
+                    break;
+                default:
+                    System.out.println("Invalid Option");
+
+            }
+
+
+
+            System.out.println("Would you like to order another sandwich?");
+            System.out.println("Enter 1 to order another sub. Enter 0 to exit");
+            userInput = scanner.nextInt();
+
+        }
+
+// Ask again
+
+
+    }}
+}
